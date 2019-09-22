@@ -1,0 +1,23 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>netcoreapp2.2</TargetFramework>
+    <RootNamespace>ScheduleBot_misis_mendeleev_parser</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Schedule Files\Mendeleev\_old\**" />
+    <Compile Remove="Schedule Files\Misis\_old\**" />
+    <EmbeddedResource Remove="Schedule Files\Mendeleev\_old\**" />
+    <EmbeddedResource Remove="Schedule Files\Misis\_old\**" />
+    <None Remove="Schedule Files\Mendeleev\_old\**" />
+    <None Remove="Schedule Files\Misis\_old\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.2" />
+    <PackageReference Include="NPOI" Version="2.4.1" />
+  </ItemGroup>
+
+</Project>
