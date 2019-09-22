@@ -15,7 +15,7 @@ namespace ScheduleBot_misis_mendeleev_parser.Logic.Parsers
         public void ReadXlsx(string fileName)
         {
 
-            Schedule.AddUniversity("РХТУ им.Менделеева");
+            //Schedule.AddUniversity("РХТУ им.Менделеева");
 
 
             XSSFWorkbook scheduleWorkbook;
@@ -51,16 +51,16 @@ namespace ScheduleBot_misis_mendeleev_parser.Logic.Parsers
                     if (sheet.GetRow(row - 1).GetCell(cell + 1).StringCellValue == "")
                         break;
 
-                    Schedule.AddFacility("РХТУ им.Менделеева",
-                    GetFacility(sheet.GetRow(row - 1).GetCell(cell + 1).StringCellValue.Split('-')[0]));
+                    //Schedule.AddFacility("РХТУ им.Менделеева",
+                    //GetFacility(sheet.GetRow(row - 1).GetCell(cell + 1).StringCellValue.Split('-')[0]));
 
-                    Schedule.AddCourse("РХТУ им.Менделеева",
-                        GetFacility(sheet.GetRow(row - 1).GetCell(cell + 1).StringCellValue.Split('-')[0]),
-                        fileName[0].ToString());
-                    Schedule.AddGroup("РХТУ им.Менделеева",
-                        GetFacility(sheet.GetRow(row - 1).GetCell(cell + 1).StringCellValue.Split('-')[0]),
-                                fileName[0].ToString(),
-                                sheet.GetRow(row - 1).GetCell(cell + 1).StringCellValue,2);
+                    //Schedule.AddCourse("РХТУ им.Менделеева",
+                    //    GetFacility(sheet.GetRow(row - 1).GetCell(cell + 1).StringCellValue.Split('-')[0]),
+                    //    fileName[0].ToString());
+                    //Schedule.AddGroup("РХТУ им.Менделеева",
+                    //    GetFacility(sheet.GetRow(row - 1).GetCell(cell + 1).StringCellValue.Split('-')[0]),
+                    //            fileName[0].ToString(),
+                    //            sheet.GetRow(row - 1).GetCell(cell + 1).StringCellValue,2);
 
                     ScheduleWeek week1 = new ScheduleWeek();
                     ScheduleWeek week2 = new ScheduleWeek();
@@ -159,8 +159,8 @@ namespace ScheduleBot_misis_mendeleev_parser.Logic.Parsers
 
                     row = 3;
 
-                    Schedule.AddScheduleWeek("РХТУ им.Менделеева", GetFacility(sheet.GetRow(row - 1).GetCell(cell + 1).StringCellValue.Split('-')[0]), fileName[0].ToString(), sheet.GetRow(row - 1).GetCell(cell + 1).StringCellValue, week1);
-                    Schedule.AddScheduleWeek("РХТУ им.Менделеева", GetFacility(sheet.GetRow(row - 1).GetCell(cell + 1).StringCellValue.Split('-')[0]), fileName[0].ToString(), sheet.GetRow(row - 1).GetCell(cell + 1).StringCellValue, week2);
+                    Schedule.AddScheduleWeek("РХТУ им.Менделеева", GetFacility(sheet.GetRow(row - 1).GetCell(cell + 1).StringCellValue.Split('-')[0]), fileName[0].ToString(), sheet.GetRow(row - 1).GetCell(cell + 1).StringCellValue,2, week1);
+                    Schedule.AddScheduleWeek("РХТУ им.Менделеева", GetFacility(sheet.GetRow(row - 1).GetCell(cell + 1).StringCellValue.Split('-')[0]), fileName[0].ToString(), sheet.GetRow(row - 1).GetCell(cell + 1).StringCellValue, 2, week2);
 
                     cell += 4;
                 }

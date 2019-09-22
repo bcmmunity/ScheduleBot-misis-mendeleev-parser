@@ -9,59 +9,59 @@ namespace ScheduleBot_misis_mendeleev_parser.Logic.Request
     public class ScheduleRequest
     {
 
-        public void AddUniversity(string name)
-        {
-            PostRequest request = new PostRequest
-            {
-                University = name,
+        //public void AddUniversity(string name)
+        //{
+        //    PostRequest request = new PostRequest
+        //    {
+        //        University = name,
 
-            };
-            Send(request);
+        //    };
+        //    Send(request);
             
-        }
+        //}
 
-        public void AddFacility(string university, string name)
-        {
-            PostRequest request = new PostRequest
-            {
-                University = university,
-                Facility = name,
+        //public void AddFacility(string university, string name)
+        //{
+        //    PostRequest request = new PostRequest
+        //    {
+        //        University = university,
+        //        Facility = name,
 
-            };
-            Send(request);
+        //    };
+        //    Send(request);
          
-        }
+        //}
 
-        public void AddCourse(string university, string facility, string name)
-        {
-            PostRequest request = new PostRequest
-            {
-                University = university,
-                Facility = facility,
-                Course = name,
-            };
-            Send(request);
+        //public void AddCourse(string university, string facility, string name)
+        //{
+        //    PostRequest request = new PostRequest
+        //    {
+        //        University = university,
+        //        Facility = facility,
+        //        Course = name,
+        //    };
+        //    Send(request);
            
-        }
+        //}
 
-        public void AddGroup(string university, string facility, string course, string name, byte type)
-        {
-            PostRequest request = new PostRequest
-            {
-                University = university,
-                Facility = facility,
-                Course = course,
-                Group = name,
-                Type = type
+        //public void AddGroup(string university, string facility, string course, string name, byte type)
+        //{
+        //    PostRequest request = new PostRequest
+        //    {
+        //        University = university,
+        //        Facility = facility,
+        //        Course = course,
+        //        Group = name,
+        //        Type = type
 
-            };
-            Send(request);
+        //    };
+        //    Send(request);
            
-        }
+        //}
 
 
 
-        public void AddScheduleWeek(string university, string facility, string course, string group, ScheduleWeek week)
+        public void AddScheduleWeek(string university, string facility, string course, string group, byte type, ScheduleWeek week)
         {
             PostRequest request = new PostRequest
             {
@@ -69,8 +69,8 @@ namespace ScheduleBot_misis_mendeleev_parser.Logic.Request
                 Facility = facility,
                 Course = course,
                 Group = group,
-                Week = week
-
+                Week = week,
+                Type = type
             };
             Send(request);
 

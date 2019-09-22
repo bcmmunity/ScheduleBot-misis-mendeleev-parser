@@ -17,8 +17,8 @@ namespace ScheduleBot_misis_mendeleev_parser.Logic.Parsers
         {
             //ScheduleController.CheckFile();
 
-            Schedule.AddUniversity("НИТУ МИСиС");
-            Schedule.AddFacility("НИТУ МИСиС", fileName);
+            //Schedule.AddUniversity("НИТУ МИСиС");
+            //Schedule.AddFacility("НИТУ МИСиС", fileName);
 
             HSSFWorkbook hssfwb;
             using (FileStream file = new FileStream(@"Schedule Files\Misis\" + fileName + ".xls", FileMode.Open, FileAccess.Read))
@@ -33,7 +33,7 @@ namespace ScheduleBot_misis_mendeleev_parser.Logic.Parsers
                 if (hssfwb.GetSheet(course + " курс") == null)
                     break;
 
-                Schedule.AddCourse("НИТУ МИСиС", fileName, course.ToString());
+               // Schedule.AddCourse("НИТУ МИСиС", fileName, course.ToString());
 
                 ISheet sheet = hssfwb.GetSheet(course + " курс");
 
@@ -43,27 +43,27 @@ namespace ScheduleBot_misis_mendeleev_parser.Logic.Parsers
                 while (sheet.GetRow(1).GetCell(group - 1) != null)
                 {
 
-                    if (sheet.GetRow(1).GetCell(group - 1).NumericCellValue.ToString() == "1")
-                    {
-                        Schedule.AddGroup("НИТУ МИСиС", fileName, course.ToString(), sheet.GetRow(0).GetCell(group - 1).StringCellValue + " 1 подгруппа",2);
-                    }
-                    else if (sheet.GetRow(1).GetCell(group - 1).NumericCellValue.ToString() == "2")
-                    {
-                        if (sheet.GetRow(0).GetCell(group - 1).ToString() == "")
-                            Schedule.AddGroup("НИТУ МИСиС", fileName, course.ToString(), sheet.GetRow(0).GetCell(group - 3).StringCellValue + " 2 подгруппа",2);
-                        else
-                            Schedule.AddGroup("НИТУ МИСиС", fileName, course.ToString(), sheet.GetRow(0).GetCell(group - 1).StringCellValue + " 2 подгруппа",2);
-                    }
-                    else if (sheet.GetRow(0).GetCell(group - 1).StringCellValue != "")
-                    {
-                        Schedule.AddGroup("НИТУ МИСиС", fileName, course.ToString(),
-                            sheet.GetRow(0).GetCell(group - 1).StringCellValue,2);
-                    }
-                    else
-                    {
-                        group += 2;
-                        continue;
-                    }
+                    //if (sheet.GetRow(1).GetCell(group - 1).NumericCellValue.ToString() == "1")
+                    //{
+                    //    Schedule.AddGroup("НИТУ МИСиС", fileName, course.ToString(), sheet.GetRow(0).GetCell(group - 1).StringCellValue + " 1 подгруппа",2);
+                    //}
+                    //else if (sheet.GetRow(1).GetCell(group - 1).NumericCellValue.ToString() == "2")
+                    //{
+                    //    if (sheet.GetRow(0).GetCell(group - 1).ToString() == "")
+                    //        Schedule.AddGroup("НИТУ МИСиС", fileName, course.ToString(), sheet.GetRow(0).GetCell(group - 3).StringCellValue + " 2 подгруппа",2);
+                    //    else
+                    //        Schedule.AddGroup("НИТУ МИСиС", fileName, course.ToString(), sheet.GetRow(0).GetCell(group - 1).StringCellValue + " 2 подгруппа",2);
+                    //}
+                    //else if (sheet.GetRow(0).GetCell(group - 1).StringCellValue != "")
+                    //{
+                    //    Schedule.AddGroup("НИТУ МИСиС", fileName, course.ToString(),
+                    //        sheet.GetRow(0).GetCell(group - 1).StringCellValue,2);
+                    //}
+                    //else
+                    //{
+                    //    group += 2;
+                    //    continue;
+                    //}
                         
 
                     ScheduleWeek week1 = new ScheduleWeek();
@@ -130,26 +130,26 @@ namespace ScheduleBot_misis_mendeleev_parser.Logic.Parsers
 
                     if (sheet.GetRow(1).GetCell(group - 1).NumericCellValue.ToString() == "1")
                     {
-                        Schedule.AddScheduleWeek("НИТУ МИСиС", fileName, course.ToString(), sheet.GetRow(0).GetCell(group - 1).StringCellValue + " 1 подгруппа", week1);
-                        Schedule.AddScheduleWeek("НИТУ МИСиС", fileName, course.ToString(), sheet.GetRow(0).GetCell(group - 1).StringCellValue + " 1 подгруппа", week2);
+                        Schedule.AddScheduleWeek("НИТУ МИСиС", fileName, course.ToString(), sheet.GetRow(0).GetCell(group - 1).StringCellValue + " 1 подгруппа",2, week1);
+                        Schedule.AddScheduleWeek("НИТУ МИСиС", fileName, course.ToString(), sheet.GetRow(0).GetCell(group - 1).StringCellValue + " 1 подгруппа",2, week2);
                     }
                     else if (sheet.GetRow(1).GetCell(group - 1).NumericCellValue.ToString() == "2")
                     {
                         if (sheet.GetRow(0).GetCell(group - 1).ToString() == "")
                         {
-                            Schedule.AddScheduleWeek("НИТУ МИСиС", fileName, course.ToString(), sheet.GetRow(0).GetCell(group - 3).StringCellValue + " 2 подгруппа", week1);
-                            Schedule.AddScheduleWeek("НИТУ МИСиС", fileName, course.ToString(), sheet.GetRow(0).GetCell(group - 3).StringCellValue + " 2 подгруппа", week2);
+                            Schedule.AddScheduleWeek("НИТУ МИСиС", fileName, course.ToString(), sheet.GetRow(0).GetCell(group - 3).StringCellValue + " 2 подгруппа",2, week1);
+                            Schedule.AddScheduleWeek("НИТУ МИСиС", fileName, course.ToString(), sheet.GetRow(0).GetCell(group - 3).StringCellValue + " 2 подгруппа",2, week2);
                         }
                         else
                         {
-                            Schedule.AddScheduleWeek("НИТУ МИСиС", fileName, course.ToString(), sheet.GetRow(0).GetCell(group - 1).StringCellValue + " 2 подгруппа", week1);
-                            Schedule.AddScheduleWeek("НИТУ МИСиС", fileName, course.ToString(), sheet.GetRow(0).GetCell(group - 1).StringCellValue + " 2 подгруппа", week2);
+                            Schedule.AddScheduleWeek("НИТУ МИСиС", fileName, course.ToString(), sheet.GetRow(0).GetCell(group - 1).StringCellValue + " 2 подгруппа",2, week1);
+                            Schedule.AddScheduleWeek("НИТУ МИСиС", fileName, course.ToString(), sheet.GetRow(0).GetCell(group - 1).StringCellValue + " 2 подгруппа",2, week2);
                         }
                     }
                     else
                     {
-                        Schedule.AddScheduleWeek("НИТУ МИСиС", fileName, course.ToString(), sheet.GetRow(0).GetCell(group - 1).StringCellValue, week1);
-                        Schedule.AddScheduleWeek("НИТУ МИСиС", fileName, course.ToString(), sheet.GetRow(0).GetCell(group - 1).StringCellValue, week2);
+                        Schedule.AddScheduleWeek("НИТУ МИСиС", fileName, course.ToString(), sheet.GetRow(0).GetCell(group - 1).StringCellValue,2, week1);
+                        Schedule.AddScheduleWeek("НИТУ МИСиС", fileName, course.ToString(), sheet.GetRow(0).GetCell(group - 1).StringCellValue,2, week2);
                     }
 
                     group += 2;
@@ -161,8 +161,8 @@ namespace ScheduleBot_misis_mendeleev_parser.Logic.Parsers
         {
             //schedule.CheckFile();
 
-            Schedule.AddUniversity("НИТУ МИСиС");
-            Schedule.AddFacility("НИТУ МИСиС", fileName);
+            //Schedule.AddUniversity("НИТУ МИСиС");
+            //Schedule.AddFacility("НИТУ МИСиС", fileName);
 
 
             XSSFWorkbook hssfwb;
@@ -176,7 +176,7 @@ namespace ScheduleBot_misis_mendeleev_parser.Logic.Parsers
 
                 if (hssfwb.GetSheet(course + " курс") == null)
                     break;
-                Schedule.AddCourse("НИТУ МИСиС", fileName, course.ToString());
+                //Schedule.AddCourse("НИТУ МИСиС", fileName, course.ToString());
 
                 ISheet sheet = hssfwb.GetSheet(course + " курс");
 
@@ -186,21 +186,21 @@ namespace ScheduleBot_misis_mendeleev_parser.Logic.Parsers
                 while (sheet.GetRow(1).GetCell(group - 1) != null)
                 {
 
-                    if (sheet.GetRow(1).GetCell(group - 1).NumericCellValue.ToString() == "1")
-                    {
-                        Schedule.AddGroup("НИТУ МИСиС", fileName, course.ToString(), sheet.GetRow(0).GetCell(group - 1).StringCellValue + " 1 подгруппа",2);
-                    }
-                    else if (sheet.GetRow(1).GetCell(group - 1).NumericCellValue.ToString() == "2")
-                    {
-                        if (sheet.GetRow(0).GetCell(group - 1).ToString() == "")
-                            Schedule.AddGroup("НИТУ МИСиС", fileName, course.ToString(), sheet.GetRow(0).GetCell(group - 3).StringCellValue + " 2 подгруппа",2);
-                        else
-                            Schedule.AddGroup("НИТУ МИСиС", fileName, course.ToString(), sheet.GetRow(0).GetCell(group - 1).StringCellValue + " 2 подгруппа",2);
-                    }
-                    else
-                    {
-                        Schedule.AddGroup("НИТУ МИСиС", fileName, course.ToString(), sheet.GetRow(0).GetCell(group - 1).StringCellValue,2);
-                    }
+                    //if (sheet.GetRow(1).GetCell(group - 1).NumericCellValue.ToString() == "1")
+                    //{
+                    //    Schedule.AddGroup("НИТУ МИСиС", fileName, course.ToString(), sheet.GetRow(0).GetCell(group - 1).StringCellValue + " 1 подгруппа",2);
+                    //}
+                    //else if (sheet.GetRow(1).GetCell(group - 1).NumericCellValue.ToString() == "2")
+                    //{
+                    //    if (sheet.GetRow(0).GetCell(group - 1).ToString() == "")
+                    //        Schedule.AddGroup("НИТУ МИСиС", fileName, course.ToString(), sheet.GetRow(0).GetCell(group - 3).StringCellValue + " 2 подгруппа",2);
+                    //    else
+                    //        Schedule.AddGroup("НИТУ МИСиС", fileName, course.ToString(), sheet.GetRow(0).GetCell(group - 1).StringCellValue + " 2 подгруппа",2);
+                    //}
+                    //else
+                    //{
+                    //    Schedule.AddGroup("НИТУ МИСиС", fileName, course.ToString(), sheet.GetRow(0).GetCell(group - 1).StringCellValue,2);
+                    //}
 
                     ScheduleWeek week1 = new ScheduleWeek();
                     ScheduleWeek week2 = new ScheduleWeek();
@@ -256,26 +256,26 @@ namespace ScheduleBot_misis_mendeleev_parser.Logic.Parsers
 
                     if (sheet.GetRow(1).GetCell(group - 1).NumericCellValue.ToString() == "1")
                     {
-                        Schedule.AddScheduleWeek("НИТУ МИСиС", fileName, course.ToString(), sheet.GetRow(0).GetCell(group - 1).StringCellValue + " 1 подгруппа", week1);
-                        Schedule.AddScheduleWeek("НИТУ МИСиС", fileName, course.ToString(), sheet.GetRow(0).GetCell(group - 1).StringCellValue + " 1 подгруппа", week2);
+                        Schedule.AddScheduleWeek("НИТУ МИСиС", fileName, course.ToString(), sheet.GetRow(0).GetCell(group - 1).StringCellValue + " 1 подгруппа",2, week1);
+                        Schedule.AddScheduleWeek("НИТУ МИСиС", fileName, course.ToString(), sheet.GetRow(0).GetCell(group - 1).StringCellValue + " 1 подгруппа",2, week2);
                     }
                     else if (sheet.GetRow(1).GetCell(group - 1).NumericCellValue.ToString() == "2")
                     {
                         if (sheet.GetRow(0).GetCell(group - 1).ToString() == "")
                         {
-                            Schedule.AddScheduleWeek("НИТУ МИСиС", fileName, course.ToString(), sheet.GetRow(0).GetCell(group - 3).StringCellValue + " 2 подгруппа", week1);
-                            Schedule.AddScheduleWeek("НИТУ МИСиС", fileName, course.ToString(), sheet.GetRow(0).GetCell(group - 3).StringCellValue + " 2 подгруппа", week2);
+                            Schedule.AddScheduleWeek("НИТУ МИСиС", fileName, course.ToString(), sheet.GetRow(0).GetCell(group - 3).StringCellValue + " 2 подгруппа",2, week1);
+                            Schedule.AddScheduleWeek("НИТУ МИСиС", fileName, course.ToString(), sheet.GetRow(0).GetCell(group - 3).StringCellValue + " 2 подгруппа",2, week2);
                         }
                         else
                         {
-                            Schedule.AddScheduleWeek("НИТУ МИСиС", fileName, course.ToString(), sheet.GetRow(0).GetCell(group - 1).StringCellValue + " 2 подгруппа", week1);
-                            Schedule.AddScheduleWeek("НИТУ МИСиС", fileName, course.ToString(), sheet.GetRow(0).GetCell(group - 1).StringCellValue + " 2 подгруппа", week2);
+                            Schedule.AddScheduleWeek("НИТУ МИСиС", fileName, course.ToString(), sheet.GetRow(0).GetCell(group - 1).StringCellValue + " 2 подгруппа",2, week1);
+                            Schedule.AddScheduleWeek("НИТУ МИСиС", fileName, course.ToString(), sheet.GetRow(0).GetCell(group - 1).StringCellValue + " 2 подгруппа",2, week2);
                         }
                     }
                     else
                     {
-                        Schedule.AddScheduleWeek("НИТУ МИСиС", fileName, course.ToString(), sheet.GetRow(0).GetCell(group - 1).StringCellValue, week1);
-                        Schedule.AddScheduleWeek("НИТУ МИСиС", fileName, course.ToString(), sheet.GetRow(0).GetCell(group - 1).StringCellValue, week2);
+                        Schedule.AddScheduleWeek("НИТУ МИСиС", fileName, course.ToString(), sheet.GetRow(0).GetCell(group - 1).StringCellValue,2, week1);
+                        Schedule.AddScheduleWeek("НИТУ МИСиС", fileName, course.ToString(), sheet.GetRow(0).GetCell(group - 1).StringCellValue,2, week2);
                     }
 
                     group += 2;
