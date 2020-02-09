@@ -70,11 +70,11 @@ namespace ScheduleBot_misis_mendeleev_parser.Logic.Parsers
                     ScheduleWeek week2 = new ScheduleWeek();
 
                     week1.Week = 1;
-                    week1.Day = new List<ScheduleDay>();
+                    week1.Days = new List<ScheduleDay>();
     
 
                     week2.Week = 2;
-                    week2.Day = new List<ScheduleDay>();
+                    week2.Days = new List<ScheduleDay>();
 
 
                     for (int dayofweek = 3; dayofweek < 100; dayofweek += 14)
@@ -83,9 +83,9 @@ namespace ScheduleBot_misis_mendeleev_parser.Logic.Parsers
                         ScheduleDay day2 = new ScheduleDay();
 
                         day1.Day = dayofweek / 14 + 1;
-                        day1.Lesson = new List<Lesson>();
+                        day1.Lessons = new List<Lesson>();
                         day2.Day = dayofweek / 14 + 1;
-                        day2.Lesson = new List<Lesson>();
+                        day2.Lessons = new List<Lesson>();
 
                         for (int para = dayofweek; para < dayofweek + 14; para += 2)
                         {
@@ -104,14 +104,14 @@ namespace ScheduleBot_misis_mendeleev_parser.Logic.Parsers
                                     Type = GetType(sheet.GetRow(para - 1).GetCell(group - 1).StringCellValue),
                                     Number = ((para - dayofweek) / 2 + 1).ToString()
                                 };
-                                day1.Lesson.Add(a);
+                                day1.Lessons.Add(a);
                             }
 
                             if (sheet.GetRow(para).GetCell(group - 1) != null &&
                                 sheet.GetRow(para).GetCell(group - 1).StringCellValue != "")
                             {
 
-                                day2.Lesson.Add(new Lesson()
+                                day2.Lessons.Add(new Lesson()
                                 {
                                     Name = GetName(sheet.GetRow(para).GetCell(group - 1).StringCellValue),
                                     Time = sheet.GetRow(para - 1).GetCell(2).StringCellValue,
@@ -123,8 +123,11 @@ namespace ScheduleBot_misis_mendeleev_parser.Logic.Parsers
                             }
                         }
 
-                        week1.Day.Add(day1);
-                        week2.Day.Add(day2);
+                        if (day1.Day != 7 && day2.Day != 7)
+                        {
+                            week1.Days.Add(day1);
+                            week2.Days.Add(day2);
+                        }
 
                     }
 
@@ -206,11 +209,11 @@ namespace ScheduleBot_misis_mendeleev_parser.Logic.Parsers
                     ScheduleWeek week2 = new ScheduleWeek();
 
                     week1.Week = 1;
-                    week1.Day = new List<ScheduleDay>();
+                    week1.Days = new List<ScheduleDay>();
                     
 
                     week2.Week = 2;
-                    week2.Day = new List<ScheduleDay>();
+                    week2.Days = new List<ScheduleDay>();
                  
 
                     for (int dayofweek = 3; dayofweek < 100; dayofweek += 14)
@@ -219,9 +222,9 @@ namespace ScheduleBot_misis_mendeleev_parser.Logic.Parsers
                         ScheduleDay day2 = new ScheduleDay();
 
                         day1.Day = dayofweek / 14 + 1;
-                        day1.Lesson = new List<Lesson>();
+                        day1.Lessons = new List<Lesson>();
                         day2.Day = dayofweek / 14 + 1;
-                        day2.Lesson = new List<Lesson>();
+                        day2.Lessons = new List<Lesson>();
 
 
 
@@ -235,7 +238,7 @@ namespace ScheduleBot_misis_mendeleev_parser.Logic.Parsers
                                         if (sheet.GetRow(para - 1).GetCell(group - 1).StringCellValue=="")
                                             continue;
                                         Lesson a = new Lesson() { Name = GetName(sheet.GetRow(para - 1).GetCell(group - 1).StringCellValue), Time = sheet.GetRow(para - 1).GetCell(2).StringCellValue, Room = sheet.GetRow(para - 1).GetCell(group).StringCellValue, Teacher = GetTeacher(sheet.GetRow(para - 1).GetCell(group - 1).StringCellValue), Type = GetType(sheet.GetRow(para - 1).GetCell(group - 1).StringCellValue), Number = ((para - dayofweek) / 2 + 1).ToString() };
-                                        day1.Lesson.Add(a);
+                                        day1.Lessons.Add(a);
                                     }
                                     catch
                                     {
@@ -246,11 +249,11 @@ namespace ScheduleBot_misis_mendeleev_parser.Logic.Parsers
 
                             if (sheet.GetRow(para).GetCell(group - 1) != null)
                                 if (sheet.GetRow(para).GetCell(group - 1).StringCellValue != "")
-                                    day2.Lesson.Add(new Lesson() { Name = sheet.GetRow(para).GetCell(group - 1).StringCellValue, Time = sheet.GetRow(para - 1).GetCell(2).StringCellValue, Room = sheet.GetRow(para).GetCell(group).StringCellValue, Teacher = GetTeacher(sheet.GetRow(para).GetCell(group - 1).StringCellValue), Type = GetType(sheet.GetRow(para).GetCell(group - 1).StringCellValue), Number = ((para - dayofweek) / 2 + 1).ToString() });
+                                    day2.Lessons.Add(new Lesson() { Name = sheet.GetRow(para).GetCell(group - 1).StringCellValue, Time = sheet.GetRow(para - 1).GetCell(2).StringCellValue, Room = sheet.GetRow(para).GetCell(group).StringCellValue, Teacher = GetTeacher(sheet.GetRow(para).GetCell(group - 1).StringCellValue), Type = GetType(sheet.GetRow(para).GetCell(group - 1).StringCellValue), Number = ((para - dayofweek) / 2 + 1).ToString() });
                         }
 
-                        week1.Day.Add(day1);
-                        week2.Day.Add(day2);
+                        week1.Days.Add(day1);
+                        week2.Days.Add(day2);
 
                     }
 

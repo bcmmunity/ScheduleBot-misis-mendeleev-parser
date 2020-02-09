@@ -66,11 +66,11 @@ namespace ScheduleBot_misis_mendeleev_parser.Logic.Parsers
                     ScheduleWeek week2 = new ScheduleWeek();
 
                     week1.Week = 2;
-                    week1.Day = new List<ScheduleDay>();
+                    week1.Days = new List<ScheduleDay>();
                 
                     //номера недель отличаются от мисис
                     week2.Week = 1;
-                    week2.Day = new List<ScheduleDay>();
+                    week2.Days = new List<ScheduleDay>();
                   
 
                     for (int weekDay = 1; weekDay <= 6; weekDay++) //перебор всех дней недели
@@ -79,9 +79,9 @@ namespace ScheduleBot_misis_mendeleev_parser.Logic.Parsers
                         ScheduleDay day2 = new ScheduleDay();
 
                         day1.Day = weekDay;
-                        day1.Lesson = new List<Lesson>();
+                        day1.Lessons = new List<Lesson>();
                         day2.Day = weekDay;
-                        day2.Lesson = new List<Lesson>();
+                        day2.Lessons = new List<Lesson>();
 
                         bool isFind = true; //определяет, найдены ли все куски склеенной ячейки
 
@@ -153,8 +153,8 @@ namespace ScheduleBot_misis_mendeleev_parser.Logic.Parsers
                         }
 
 
-                        week1.Day.Add(day1);
-                        week2.Day.Add(day2);
+                        week1.Days.Add(day1);
+                        week2.Days.Add(day2);
                     }
 
                     row = 3;
@@ -238,8 +238,8 @@ namespace ScheduleBot_misis_mendeleev_parser.Logic.Parsers
                     return;
 
 
-                day1.Lesson.Add(ax);
-                day2.Lesson.Add(ax);
+                day1.Lessons.Add(ax);
+                day2.Lessons.Add(ax);
 
 
                 return;
@@ -362,12 +362,12 @@ namespace ScheduleBot_misis_mendeleev_parser.Logic.Parsers
                 return;
 
             if (name1.Contains("(1"))
-                day1.Lesson.Add(a);
+                day1.Lessons.Add(a);
             else if (name1.Contains("(2"))
-                day2.Lesson.Add(a);
+                day2.Lessons.Add(a);
             else
             {
-                day1.Lesson.Add(a);
+                day1.Lessons.Add(a);
                 if (room2 != "")
                 {
                     Lesson x = new Lesson()
@@ -379,11 +379,11 @@ namespace ScheduleBot_misis_mendeleev_parser.Logic.Parsers
                         Type = lessonType1,
                         Teacher = null
                     };
-                    day2.Lesson.Add(x);
+                    day2.Lessons.Add(x);
                 }
                 else
                 {
-                    day2.Lesson.Add(a);
+                    day2.Lessons.Add(a);
                 }
 
                 return;
@@ -418,10 +418,10 @@ namespace ScheduleBot_misis_mendeleev_parser.Logic.Parsers
                             Type = lessonType2,
                             Teacher = null
                         };
-                        day1.Lesson.Add(x);
+                        day1.Lessons.Add(x);
                     }
                     else
-                        day1.Lesson.Add(b);
+                        day1.Lessons.Add(b);
                 }
 
                 else if (name2.Contains("(2"))
@@ -437,10 +437,10 @@ namespace ScheduleBot_misis_mendeleev_parser.Logic.Parsers
                             Type = lessonType2,
                             Teacher = null
                         };
-                        day2.Lesson.Add(x);
+                        day2.Lessons.Add(x);
                     }
                     else
-                        day2.Lesson.Add(b);
+                        day2.Lessons.Add(b);
                 }
 
             }

@@ -8,11 +8,11 @@ namespace ScheduleBot_misis_mendeleev_parser.Models
 		public int ScheduleDayId { get; set; }
         public DateTime Date { get; set; }
 		public int Day { get; set; }
-		public ICollection<Lesson> Lesson { get; set; }
+		public ICollection<Lesson> Lessons { get; set; }
 
 		public ScheduleDay()
 		{
-			Lesson = new List<Lesson>();
+			Lessons = new List<Lesson>();
 		}
 	}
 }

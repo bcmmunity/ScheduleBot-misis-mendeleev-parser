@@ -1,5 +1,8 @@
+using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Net;
+using System.Security.Principal;
 using System.Text;
 using Newtonsoft.Json;
 using ScheduleBot_misis_mendeleev_parser.Models;
@@ -63,13 +66,16 @@ namespace ScheduleBot_misis_mendeleev_parser.Logic.Request
 
         public void AddScheduleWeek(string university, string facility, string course, string group, byte type, ScheduleWeek week)
         {
+            List<ScheduleWeek> weeks = new List<ScheduleWeek>();
+            weeks.Add(week);
             PostRequest request = new PostRequest
             {
+                Key = "76546b5ay2604648egh0dlbg1a0c44067k8dd167a0je2920b3c24f8e657effb9850eb13d4978c0da58959",
                 University = university,
                 Facility = facility,
                 Course = course,
                 Group = group,
-                Week = week,
+                Weeks = weeks,
                 Type = type
             };
             Send(request);
@@ -94,10 +100,19 @@ namespace ScheduleBot_misis_mendeleev_parser.Logic.Request
                 stream.Close();
             }
 
-            using (HttpWebResponse response = (HttpWebResponse)request.GetResponse())
+            try
             {
-                response.Close();
+                using (HttpWebResponse response = (HttpWebResponse)request.GetResponse())
+                {
+                    response.Close();
+                }
             }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+                Console.WriteLine(json);
+            }
+            
 
         }
     }

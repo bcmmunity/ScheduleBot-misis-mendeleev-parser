@@ -14,14 +14,14 @@ namespace ScheduleBot_misis_mendeleev_parser.Logic
             misisParser.ReadXls("ЭкоТех");
 
 
-            MendleevParser mendleevParser = new MendleevParser();
-            mendleevParser.ReadXlsx("1 course");
-            mendleevParser.ReadXlsx("2 course");
-            mendleevParser.ReadXlsx("3 course");
-            mendleevParser.ReadXlsx("4 course");
-            mendleevParser.ReadXlsx("5 course");
-            mendleevParser.ReadXlsx("6 course");
-            mendleevParser.ReadXlsx("7 course");
+            //MendleevParser mendleevParser = new MendleevParser();
+            //mendleevParser.ReadXlsx("1 course");
+            //mendleevParser.ReadXlsx("2 course");
+            //mendleevParser.ReadXlsx("3 course");
+            //mendleevParser.ReadXlsx("4 course");
+            //mendleevParser.ReadXlsx("5 course");
+            //mendleevParser.ReadXlsx("6 course");
+            //mendleevParser.ReadXlsx("7 course");
 
             //  misisParser.ReadXlsx("ИБО");
 
